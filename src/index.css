@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-brand-blue: #00f0ff;
+  --color-brand-emerald: #00ff88;
+  --color-cyber-dark: #07090e;
+  --color-cyber-gray: #121824;
+}
+
+/* Custom global styles to make it look extremely cinematic */
+body {
+  background-color: #07090e;
+  color: #f8fafc;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #040508;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00f0ff;
+}
+
+/* Glow effects */
+.glow-blue {
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.25);
+}
+.glow-emerald {
+  box-shadow: 0 0 25px rgba(0, 255, 136, 0.25);
+}
+.glow-text-blue {
+  text-shadow: 0 0 12px rgba(0, 240, 255, 0.5);
+}
+.glow-text-emerald {
+  text-shadow: 0 0 12px rgba(0, 255, 136, 0.5);
+}
+
+/* Holographic glass background */
+.holo-glass {
+  background: rgba(18, 24, 36, 0.65);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.holo-glass-blue {
+  background: rgba(18, 24, 36, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+}
+
+.holo-glass-emerald {
+  background: rgba(18, 24, 36, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 255, 136, 0.2);
+}
+
+/* Hide scrollbar but keep functionality if needed */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+

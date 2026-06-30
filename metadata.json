@@ -1,0 +1,6 @@
+{
+  "name": "Anandhu Krishnan Portfolio",
+  "description": "Interactive, cinematic 3D scroll journey portfolio of Anandhu Krishnan, a Computer Science Student & Technical Leader.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
