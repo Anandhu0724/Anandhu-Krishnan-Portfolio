@@ -22,6 +22,13 @@ import { PROJECTS, LEADERSHIP_ROLES } from './data';
 import { audioSystem } from './utils/audioSystem';
 import { Project, LeadershipRole } from './types';
 
+const getProjectCategory = (project: Project): 'IoT' | 'Full-Stack' => {
+  if (project.id === 'elam-sahayi' || project.id === 'yawnsense') {
+    return 'IoT';
+  }
+  return 'Full-Stack';
+};
+
 export default function App() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeStage, setActiveStage] = useState(1);
@@ -238,28 +245,11 @@ export default function App() {
   const heroScale = useTransform(heroScroll, [0, 0.7], [1, 0.9]);
   const heroTranslateY = useTransform(heroScroll, [0, 0.7], [0, -100]);
 
-  // Stage 2 (Projects) transformations - Dynamic Opacity Ranges depending on Selection
-  const p1OpacityRange = selectedCategory === 'All' ? [0.0, 0.12, 0.4, 0.52] : selectedCategory === 'IoT' ? [0.0, 0.1, 0.9, 1.0] : [0, 0, 0, 0];
-  const p1OpacityOutput = selectedCategory === 'All' ? [0, 1, 1, 0] : selectedCategory === 'IoT' ? [0, 1, 1, 0] : [0, 0, 0, 0];
-  const p1ScaleRange = selectedCategory === 'All' ? [0.0, 0.12, 0.4, 0.52] : [0.0, 0.1, 0.9, 1.0];
-  const p1ScaleOutput = selectedCategory === 'All' ? [0.85, 1, 1, 1.2] : [0.95, 1, 1, 1.05];
-  const p1ZOutput = selectedCategory === 'All' ? [50, 0, 0, -100] : [20, 0, 0, -20];
-
-  const p1Opacity = useTransform(projectsScroll, p1OpacityRange, p1OpacityOutput);
-  const p1Scale = useTransform(projectsScroll, p1ScaleRange, p1ScaleOutput);
-  const p1Z = useTransform(projectsScroll, p1ScaleRange, p1ZOutput);
-  const p1PointerEvents = useTransform(p1Opacity, (v) => (v > 0.1 ? 'auto' : 'none'));
-
-  const p2OpacityRange = selectedCategory === 'All' ? [0.46, 0.58, 0.84, 0.98] : selectedCategory === 'Full-Stack' ? [0.0, 0.1, 0.9, 1.0] : [0, 0, 0, 0];
-  const p2OpacityOutput = selectedCategory === 'All' ? [0, 1, 1, 0] : selectedCategory === 'Full-Stack' ? [0, 1, 1, 0] : [0, 0, 0, 0];
-  const p2ScaleRange = selectedCategory === 'All' ? [0.46, 0.58, 0.84, 0.98] : [0.0, 0.1, 0.9, 1.0];
-  const p2ScaleOutput = selectedCategory === 'All' ? [0.85, 1, 1, 1.2] : [0.95, 1, 1, 1.05];
-  const p2ZOutput = selectedCategory === 'All' ? [50, 0, 0, -100] : [20, 0, 0, -20];
-
-  const p2Opacity = useTransform(projectsScroll, p2OpacityRange, p2OpacityOutput);
-  const p2Scale = useTransform(projectsScroll, p2ScaleRange, p2ScaleOutput);
-  const p2Z = useTransform(projectsScroll, p2ScaleRange, p2ZOutput);
-  const p2PointerEvents = useTransform(p2Opacity, (v) => (v > 0.1 ? 'auto' : 'none'));
+  // Stage 2 (Projects Bento Grid) transformations
+  const gridOpacity = useTransform(projectsScroll, [0.0, 0.15, 0.85, 1.0], [0, 1, 1, 0]);
+  const gridScale = useTransform(projectsScroll, [0.0, 0.15, 0.85, 1.0], [0.88, 1, 1, 0.9]);
+  const gridTranslateY = useTransform(projectsScroll, [0.0, 0.15, 0.85, 1.0], [40, 0, 0, -40]);
+  const gridPointerEvents = useTransform(gridOpacity, (v) => (v > 0.1 ? 'auto' : 'none'));
 
   // Stage 3 (Leadership) transformations
   const lAOpacity = useTransform(impactScroll, [0.0, 0.12, 0.4, 0.52], [0, 1, 1, 0]);
@@ -483,47 +473,28 @@ export default function App() {
                 ))}
               </div>
 
-              {/* CARD 1: Elam Sahayi */}
+              {/* Bento-style Project Grid Container */}
               <motion.div
                 style={{ 
-                  opacity: p1Opacity, 
-                  scale: p1Scale, 
-                  z: p1Z,
-                  pointerEvents: p1PointerEvents
+                  opacity: gridOpacity, 
+                  scale: gridScale, 
+                  y: gridTranslateY,
+                  pointerEvents: gridPointerEvents
                 }}
-                className="w-full max-w-4xl absolute z-10"
+                className="w-full max-w-6xl relative z-10 px-4"
               >
-                <div className="flex flex-col items-center">
-                  {projects?.[0] && (
-                    <ProjectCard 
-                      project={projects[0]} 
-                      colorTheme="emerald" 
-                      isAdmin={isAdmin} 
-                      onUpdate={handleUpdateProject} 
-                    />
-                  )}
-                </div>
-              </motion.div>
-
-              {/* CARD 2: MBCeats */}
-              <motion.div
-                style={{ 
-                  opacity: p2Opacity, 
-                  scale: p2Scale, 
-                  z: p2Z,
-                  pointerEvents: p2PointerEvents
-                }}
-                className="w-full max-w-4xl absolute z-10"
-              >
-                <div className="flex flex-col items-center">
-                  {projects?.[1] && (
-                    <ProjectCard 
-                      project={projects[1]} 
-                      colorTheme="blue" 
-                      isAdmin={isAdmin} 
-                      onUpdate={handleUpdateProject} 
-                    />
-                  )}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {projects
+                    .filter((project) => selectedCategory === 'All' || getProjectCategory(project) === selectedCategory)
+                    .map((project, idx) => (
+                      <ProjectCard 
+                        key={project.id}
+                        project={project} 
+                        colorTheme={idx % 2 === 0 ? "emerald" : "blue"} 
+                        isAdmin={isAdmin} 
+                        onUpdate={handleUpdateProject} 
+                      />
+                    ))}
                 </div>
               </motion.div>
 
@@ -906,22 +877,17 @@ export default function App() {
             </div>
 
             <div className="space-y-8">
-              {(selectedCategory === 'All' || selectedCategory === 'IoT') && projects?.[0] && (
-                <ProjectCard 
-                  project={projects[0]} 
-                  colorTheme="emerald" 
-                  isAdmin={isAdmin} 
-                  onUpdate={handleUpdateProject} 
-                />
-              )}
-              {(selectedCategory === 'All' || selectedCategory === 'Full-Stack') && projects?.[1] && (
-                <ProjectCard 
-                  project={projects[1]} 
-                  colorTheme="blue" 
-                  isAdmin={isAdmin} 
-                  onUpdate={handleUpdateProject} 
-                />
-              )}
+              {projects
+                .filter((project) => selectedCategory === 'All' || getProjectCategory(project) === selectedCategory)
+                .map((project, idx) => (
+                  <ProjectCard 
+                    key={project.id}
+                    project={project} 
+                    colorTheme={idx % 2 === 0 ? "emerald" : "blue"} 
+                    isAdmin={isAdmin} 
+                    onUpdate={handleUpdateProject} 
+                  />
+                ))}
             </div>
           </section>
 

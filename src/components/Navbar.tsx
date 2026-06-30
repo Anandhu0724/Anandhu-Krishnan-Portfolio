@@ -188,7 +188,7 @@ export default function Navbar() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 15 }}
               transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-              className="relative holo-glass max-w-2xl w-full border border-brand-blue/30 rounded-2xl p-6 md:p-8 overflow-hidden shadow-[0_0_40px_rgba(0,240,255,0.15)] z-10 font-mono text-left"
+              className="relative holo-glass max-w-2xl w-full border border-brand-blue/30 rounded-2xl p-4 sm:p-6 md:p-8 overflow-y-auto max-h-[90vh] shadow-[0_0_40px_rgba(0,240,255,0.15)] z-10 font-mono text-left"
             >
               {/* Tech Corner Accents */}
               <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-brand-blue/60" />
@@ -200,7 +200,7 @@ export default function Navbar() {
               <div className="absolute inset-0 pointer-events-none opacity-[0.02] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] [background-size:100%_4px,3px_100%]" />
 
               {/* Close Button Header */}
-              <div className="flex justify-between items-center mb-6 border-b border-white/[0.08] pb-4">
+              <div className="flex justify-between items-center mb-5 border-b border-white/[0.08] pb-3">
                 <span className="text-[10px] text-brand-blue font-mono tracking-widest uppercase flex items-center gap-1.5 font-bold">
                   <span className="w-1.5 h-1.5 rounded-full bg-brand-blue animate-ping" />
                   [SECURE_OPERATOR_DOSSIER // ACCESS_GRANTED]
@@ -220,7 +220,7 @@ export default function Navbar() {
               <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start">
                 {/* LEFT COLUMN: Visual Identification */}
                 <div className="md:col-span-5 flex flex-col items-center w-full">
-                  <div className="relative w-full aspect-[3/4] rounded-xl overflow-hidden border border-brand-emerald bg-[#04060a] group/avatar shadow-[0_0_20px_rgba(0,255,136,0.1)] flex items-center justify-center">
+                  <div className="relative w-full max-w-[200px] md:max-w-none aspect-[3/4] rounded-xl overflow-hidden border border-brand-emerald bg-[#04060a] group/avatar shadow-[0_0_20px_rgba(0,255,136,0.1)] flex items-center justify-center">
                     {/* Primary Photo representation */}
                     <img
                       src={`/${PROFILE_DATABASE.avatarUrl}`}
@@ -232,7 +232,7 @@ export default function Navbar() {
                     {/* Animated scanning laser line overlay */}
                     <motion.div
                       className="absolute left-0 w-full h-[2px] bg-brand-emerald shadow-[0_0_8px_#00ff88] z-20"
-                      animate={{ y: [0, 240, 0] }}
+                      animate={{ y: ['0%', '100%', '0%'] }}
                       transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
                     />
 
@@ -262,7 +262,7 @@ export default function Navbar() {
                   </div>
 
                   {/* Operational Hash identifier */}
-                  <span className="text-[9px] text-gray-500 mt-3 font-mono tracking-widest uppercase">
+                  <span className="text-[9px] text-gray-500 mt-2.5 font-mono tracking-widest uppercase">
                     OPERATOR_HASH // {PROFILE_DATABASE.operatorHash}
                   </span>
                 </div>

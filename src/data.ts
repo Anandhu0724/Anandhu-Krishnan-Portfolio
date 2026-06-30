@@ -69,6 +69,54 @@ export const PROJECTS: Project[] = [
       'Interactive dashboard for food vendors and students',
       'Secure transaction hashing'
     ]
+  },
+  {
+    id: 'time-dilation',
+    title: 'Time Dilation App',
+    subtitle: 'Relativistic Spacetime Simulation',
+    description: 'An interactive, astrophysics-focused simulation application engineered during the NASA Space Apps Challenge to visualize relativistic time dilation effects near high-mass celestial bodies.',
+    tags: ['Astrophysics Data', 'React', 'NASA API', 'Tailwind CSS', 'Data Visualization'],
+    metric: 'Calculated time shift equations dynamically',
+    githubUrl: 'https://github.com/anandhu-krishnan',
+    liveUrl: '#',
+    architectureDetails: [
+      'Einstein field equations computation engine',
+      'Interactive orbital parameter controls',
+      'NASA API stellar telemetry visualization interface',
+      'Dynamic gravitational redshift curve rendering'
+    ]
+  },
+  {
+    id: 'yawnsense',
+    title: 'YawnSense',
+    subtitle: 'Computer Vision Boredom Tracker',
+    description: 'An intentionally ironic, whimsical computer vision script designed for the Useless Project Challenge that detects facial tracking points to calculate exact yawn durations and sound-level disruption metrics.',
+    tags: ['Python', 'OpenCV', 'Facial Landmarks', 'Amusing Automation'],
+    metric: '100% accurate yawn fatigue verification',
+    githubUrl: 'https://github.com/anandhu-krishnan',
+    liveUrl: '#',
+    architectureDetails: [
+      'Real-time facial landmark detection (68-point model)',
+      'Mouth Aspect Ratio (MAR) yawn tracking algorithm',
+      'Decibel-level microphone threshold triggers',
+      'Automated fatigue alerts & CSV session logs export'
+    ]
+  },
+  {
+    id: 'prompt-eng-workflows',
+    title: 'AI Workflow Automations',
+    subtitle: 'System Instruction Frameworks',
+    description: 'A structured repository containing optimized LLM context designs, systemic prompt instructions, and algorithmic chain-of-thought workflows engineered during the Future Interns program.',
+    tags: ['Prompt Engineering', 'Generative AI', 'LLM Alignment', 'Workflow Optimization'],
+    metric: 'Context accuracy improved via alignment logic',
+    githubUrl: 'https://github.com/anandhu-krishnan',
+    liveUrl: '#',
+    architectureDetails: [
+      'Context window packing & token budget layout',
+      'Chain-of-thought reasoning graph structures',
+      'Targeted system instruction schemas',
+      'Evaluation benchmarks for task accuracy'
+    ]
   }
 ];
 
