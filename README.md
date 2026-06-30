@@ -22,7 +22,7 @@ I am a **Computer Science Engineering Student & Technical Community Leader** spe
 
 #### 📸 System Interface Screenshot
 <p align="center">
-  <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80" width="100%" alt="Portfolio UI Overview" style="border-radius: 8px; border: 1px solid #1e293b;"/>
+  <"img width="1279" height="681" alt="image" src="https://github.com/user-attachments/assets/02b79466-8fb4-4517-9779-29672dc2a967" width="100%" alt="Portfolio UI Overview" style="border-radius: 8px; border: 1px solid #1e293b;"/>
 </p>
 
 #### 🎬 Operational Demo Video
