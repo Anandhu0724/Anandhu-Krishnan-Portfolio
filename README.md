@@ -32,10 +32,6 @@ I am a **Computer Science Engineering Student & Technical Community Leader** spe
   </a>
 </p>
 
-<p align="center">
-  <sub><i>Tip: To embed a preview frame directly instead of a text link, copy the <b>"Embed item"</b> iframe code from your Google Drive file options and place it right here.</i></sub>
-</p>
-
 ---
 
 ### 🛠️ TECH STACK TELEMETRY MATRIX
