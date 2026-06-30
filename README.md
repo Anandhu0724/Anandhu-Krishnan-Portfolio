@@ -27,7 +27,7 @@ I am a **Computer Science Engineering Student & Technical Community Leader** spe
 
 #### 🎬 Operational Demo Video
 <p align="center">
-  <a href="https://drive.google.com/file/d/1IRTEBT6XeOF7w0G8Z2iQQm_Yo5NTvGi0/view?usp=drive_link" target="_blank">
+  <a href="https://drive.google.com/file/d/1aGZKtFU4ENbs-F1PNmt_YDbx7s65lr6M/view?usp=sharing"_blank">
     <img src="https://img.shields.io/badge/▶_LAUNCH_DEMO_VIDEO-Click_to_Watch_on_Google_Drive-00f0ff?style=for-the-badge&labelColor=07090e" alt="Launch Demo Video Layer"/>
   </a>
 </p>
