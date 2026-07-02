@@ -195,7 +195,7 @@ export default function ContactForm() {
 
               {/* GitHub */}
               <a
-                href="https://github.com/anandhu-krishnan"
+                href="https://github.com/Anandhu0724"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center justify-between p-4 rounded-xl bg-black/40 border border-white/[0.03] hover:border-brand-emerald/30 hover:bg-cyber-gray/50 transition-all duration-300 group/link cursor-pointer"
@@ -206,7 +206,7 @@ export default function ContactForm() {
                   </div>
                   <div className="text-left">
                     <span className="block text-[9px] font-mono text-gray-500 uppercase">GITHUB // REPOS</span>
-                    <span className="text-xs font-bold text-white group-hover/link:text-brand-emerald transition-colors">@anandhu-krishnan</span>
+                    <span className="text-xs font-bold text-white group-hover/link:text-brand-emerald transition-colors">@Anandhu0724</span>
                   </div>
                 </div>
                 <ArrowUpRight className="w-4 h-4 text-gray-500 group-hover/link:text-white transition-colors" />

@@ -231,8 +231,8 @@ export default function Navbar() {
 
                     {/* Animated scanning laser line overlay */}
                     <motion.div
-                      className="absolute left-0 w-full h-[2px] bg-brand-emerald shadow-[0_0_8px_#00ff88] z-20"
-                      animate={{ y: ['0%', '100%', '0%'] }}
+                      className="absolute top-0 left-0 w-full h-[2px] bg-brand-emerald shadow-[0_0_8px_#00ff88] z-20 pointer-events-none"
+                      animate={{ top: ['0%', '100%', '0%'] }}
                       transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
                     />
 

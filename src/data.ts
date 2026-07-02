@@ -44,7 +44,7 @@ export const PROJECTS: Project[] = [
     longDescription: 'Developed as part of the prestigious Young Innovators Programme (YIP 8.0), Elam Sahayi integrates custom mechanical picking assemblies with real-time sensor networks to completely automate agricultural harvesting. It replaces tedious manual picking, protecting plantation workers while increasing efficiency.',
     tags: ['IoT', 'Automation', 'Sensors', 'Embedded C', 'YIP 8.0'],
     metric: 'Occupational risk reduced by 95%',
-    githubUrl: 'https://github.com/anandhu-krishnan',
+    githubUrl: 'https://github.com/Anandhu0724',
     liveUrl: '#',
     architectureDetails: [
       'Pesticide & gas detection sensors',
@@ -61,7 +61,7 @@ export const PROJECTS: Project[] = [
     longDescription: 'Designed to solve the bottleneck of long lunch queues in college canteens. MBCeats features an asynchronous order system, live queue tracking, and automated ledger balancing. Kitchen staff receive orders instantly on a digital dispatch screen, and students get live ETA updates.',
     tags: ['Java', 'SQL', 'Database Design', 'Asynchronous Workflows', 'Client-Server'],
     metric: 'Queue wait-time cut by 70%',
-    githubUrl: 'https://github.com/anandhu-krishnan',
+    githubUrl: 'https://github.com/Anandhu0724',
     liveUrl: '#',
     architectureDetails: [
       'Relational database with optimized index paths',
@@ -77,7 +77,7 @@ export const PROJECTS: Project[] = [
     description: 'An interactive, astrophysics-focused simulation application engineered during the NASA Space Apps Challenge to visualize relativistic time dilation effects near high-mass celestial bodies.',
     tags: ['Astrophysics Data', 'React', 'NASA API', 'Tailwind CSS', 'Data Visualization'],
     metric: 'Calculated time shift equations dynamically',
-    githubUrl: 'https://github.com/anandhu-krishnan',
+    githubUrl: 'https://github.com/Anandhu0724/Team-VajraM',
     liveUrl: '#',
     architectureDetails: [
       'Einstein field equations computation engine',
@@ -93,7 +93,7 @@ export const PROJECTS: Project[] = [
     description: 'An intentionally ironic, whimsical computer vision script designed for the Useless Project Challenge that detects facial tracking points to calculate exact yawn durations and sound-level disruption metrics.',
     tags: ['Python', 'OpenCV', 'Facial Landmarks', 'Amusing Automation'],
     metric: '100% accurate yawn fatigue verification',
-    githubUrl: 'https://github.com/anandhu-krishnan',
+    githubUrl: 'https://github.com/Anandhu0724/yawnsense',
     liveUrl: '#',
     architectureDetails: [
       'Real-time facial landmark detection (68-point model)',
@@ -109,13 +109,123 @@ export const PROJECTS: Project[] = [
     description: 'A structured repository containing optimized LLM context designs, systemic prompt instructions, and algorithmic chain-of-thought workflows engineered during the Future Interns program.',
     tags: ['Prompt Engineering', 'Generative AI', 'LLM Alignment', 'Workflow Optimization'],
     metric: 'Context accuracy improved via alignment logic',
-    githubUrl: 'https://github.com/anandhu-krishnan',
+    githubUrl: 'https://github.com/Anandhu0724/Skills--using-markdown',
     liveUrl: '#',
     architectureDetails: [
       'Context window packing & token budget layout',
       'Chain-of-thought reasoning graph structures',
       'Targeted system instruction schemas',
       'Evaluation benchmarks for task accuracy'
+    ]
+  },
+  {
+    id: 'demonic-tic-tac-toe',
+    title: 'Demonic Tic-Tac-Toe',
+    subtitle: 'Diabolical AI Game Engine',
+    description: 'An interactive, demonic-themed Tic-Tac-Toe game powered by minimax AI algorithm options and dynamic theme states.',
+    tags: ['React', 'TypeScript', 'Game Engine', 'Minimax AI'],
+    metric: 'Unbeatable AI logic mode',
+    githubUrl: 'https://github.com/Anandhu0724/demonic-tic-tac-toe',
+    liveUrl: 'https://anandhu0724.github.io/demonic-tic-tac-toe',
+    architectureDetails: [
+      'Minimax adversarial search tree logic',
+      'Custom dark thematic visual elements',
+      'Sound telemetry integrations',
+      'State-based game loop management'
+    ]
+  },
+  {
+    id: 'chaya-kaapi-kaddi',
+    title: 'Chaya Kaapi Kaddi',
+    subtitle: 'Regional Beverage & Diner Hub',
+    description: 'A custom-themed portal showcasing regional coffee, tea, and snack menus with order tracking telemetry.',
+    tags: ['React', 'Tailwind CSS', 'Front-End Design', 'Malayalam Thematics'],
+    metric: 'Designed with traditional tea shop aesthetic',
+    githubUrl: 'https://github.com/Anandhu0724/Chaya.Kaapi.Kaddi',
+    liveUrl: 'https://anandhu0724.github.io/Chaya.Kaapi.Kaddi',
+    architectureDetails: [
+      'Localized theme assets and styling modules',
+      'Interactive menu sorting and filtering engine',
+      'Dynamic cart state synchronization',
+      'Lightweight client-side persistence'
+    ]
+  },
+  {
+    id: 'certificate-generator',
+    title: 'Certificate Generator',
+    subtitle: 'High-Throughput Digital PDF Engine',
+    description: 'Automated generator creating dynamic, print-ready digital certificates from batch database records.',
+    tags: ['JS PDF', 'Canvas API', 'Automation', 'Batch Processing'],
+    metric: 'Generates print-ready PDFs in milliseconds',
+    githubUrl: 'https://github.com/Anandhu0724/certificate-generator',
+    liveUrl: 'https://anandhu0724.github.io/certificate-generator',
+    architectureDetails: [
+      'Custom canvas rendering boundary paths',
+      'Bulk CSV data ingestion interface',
+      'PDF output streams via client-side libraries',
+      'Dynamic signature loading and placement coordinates'
+    ]
+  },
+  {
+    id: 'mythical-weather-app',
+    title: 'Mythical Weather',
+    subtitle: 'Enchanted Atmospheric Dashboard',
+    description: 'An atmospheric weather reporter that parses live coordinate weather feeds and transforms them into mythical conditions.',
+    tags: ['Weather API', 'React', 'Thematic CSS', 'API Integration'],
+    metric: 'Converts Celsius to fantasy weather logs',
+    githubUrl: 'https://github.com/Anandhu0724/mythical-weather-app',
+    liveUrl: 'https://anandhu0724.github.io/mythical-weather-app',
+    architectureDetails: [
+      'Live OpenWeather telemetry parsing',
+      'Fantasy theme translation dictionaries',
+      'Responsive geolocation trackers',
+      'SVG atmospheric condition animation triggers'
+    ]
+  },
+  {
+    id: 'budgetmaster',
+    title: 'BudgetMaster',
+    subtitle: 'Personal Finance Telemetry Core',
+    description: 'An interactive ledger showing expense telemetry, dynamic allocation charts, and categories.',
+    tags: ['React', 'Tailwind CSS', 'Local Storage', 'Finance Visualizer'],
+    metric: 'Saves ledger states locally',
+    githubUrl: 'https://github.com/Anandhu0724/v0-budgetmaster',
+    liveUrl: 'https://anandhu0724.github.io/v0-budgetmaster',
+    architectureDetails: [
+      'Asynchronous transactions and categories log',
+      'Chart rendering using modular SVG coordinates',
+      'Continuous localStorage state synchronization',
+      'Dynamic budgeting limit threshold alerts'
+    ]
+  },
+  {
+    id: 'team-vajram',
+    title: 'Team VajraM Core',
+    subtitle: 'NASA Space Apps Workspace',
+    description: 'Collaborative telemetry workspace and data parsing engines built for the NASA Space Apps challenge.',
+    tags: ['Astrophysics', 'Collaborative Workspace', 'API Aggregation'],
+    metric: 'NASA spaceapps workspace',
+    githubUrl: 'https://github.com/Anandhu0724/Team-VajraM',
+    liveUrl: '#',
+    architectureDetails: [
+      'Geospatial telemetry data stream filters',
+      'Multi-contributor repository pipeline',
+      'NASA planetary imagery APIs integration'
+    ]
+  },
+  {
+    id: 'java-project',
+    title: 'Java Core Telemetry',
+    subtitle: 'Object-Oriented System Designs',
+    description: 'A collection of object-oriented Java solutions, multithreaded workflows, and core algorithms.',
+    tags: ['Java', 'Algorithms', 'Multithreading', 'OOP Design'],
+    metric: 'Thread-safe core workflows',
+    githubUrl: 'https://github.com/Anandhu0724/Java-Project',
+    liveUrl: '#',
+    architectureDetails: [
+      'Concurrent data structures implementation',
+      'Modular command-line diagnostics utilities',
+      'Optimized custom memory management models'
     ]
   }
 ];

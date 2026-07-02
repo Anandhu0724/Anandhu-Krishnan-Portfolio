@@ -27,9 +27,58 @@ export default function CyberSpaceCanvas({ scrollProgress }: CyberSpaceCanvasPro
       targetMouseRef.current = { x, y };
     };
 
+    const handleDeviceOrientation = (e: DeviceOrientationEvent) => {
+      if (e.beta === null || e.gamma === null) return;
+      // Map gamma (left/right tilt, normally -90 to 90) and beta (front/back tilt, normally -180 to 180) to target coordinates.
+      // In portrait: holding device naturally is around beta: 60, gamma: 0.
+      // We normalize so that a +/- 30 degree tilt maps to +/- 0.5 range.
+      const x = Math.max(-0.5, Math.min(0.5, e.gamma / 30));
+      const y = Math.max(-0.5, Math.min(0.5, (e.beta - 60) / 30));
+      targetMouseRef.current = { x, y };
+    };
+
     window.addEventListener('mousemove', handleMouseMove);
+
+    const startDeviceOrientation = async () => {
+      if (
+        typeof DeviceOrientationEvent !== 'undefined' &&
+        // @ts-ignore
+        typeof DeviceOrientationEvent.requestPermission === 'function'
+      ) {
+        try {
+          // @ts-ignore
+          const state = await DeviceOrientationEvent.requestPermission();
+          if (state === 'granted') {
+            window.addEventListener('deviceorientation', handleDeviceOrientation);
+          }
+        } catch (err) {
+          console.warn('DeviceOrientation permission request failed:', err);
+        }
+      } else {
+        window.addEventListener('deviceorientation', handleDeviceOrientation);
+      }
+    };
+
+    // Listen to orientation changes on mobile, setting up permission query if needed
+    if (
+      typeof DeviceOrientationEvent !== 'undefined' &&
+      // @ts-ignore
+      typeof DeviceOrientationEvent.requestPermission === 'function'
+    ) {
+      const requestOnGesture = async () => {
+        await startDeviceOrientation();
+        window.removeEventListener('click', requestOnGesture);
+        window.removeEventListener('touchstart', requestOnGesture);
+      };
+      window.addEventListener('click', requestOnGesture);
+      window.addEventListener('touchstart', requestOnGesture);
+    } else {
+      startDeviceOrientation();
+    }
+
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('deviceorientation', handleDeviceOrientation);
     };
   }, []);
 

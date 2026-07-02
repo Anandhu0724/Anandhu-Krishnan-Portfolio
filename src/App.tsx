@@ -22,18 +22,11 @@ import { PROJECTS, LEADERSHIP_ROLES } from './data';
 import { audioSystem } from './utils/audioSystem';
 import { Project, LeadershipRole } from './types';
 
-const getProjectCategory = (project: Project): 'IoT' | 'Full-Stack' => {
-  if (project.id === 'elam-sahayi' || project.id === 'yawnsense') {
-    return 'IoT';
-  }
-  return 'Full-Stack';
-};
 
 export default function App() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeStage, setActiveStage] = useState(1);
   const [isMobile, setIsMobile] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState<'All' | 'IoT' | 'Full-Stack'>('All');
 
   // Load and manage custom client-side override state
   const [projects, setProjects] = useState<Project[]>(() => {
@@ -105,14 +98,6 @@ export default function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  const selectAndScroll = (category: 'All' | 'IoT' | 'Full-Stack') => {
-    audioSystem.playClickBeep();
-    setSelectedCategory(category);
-    const section = document.getElementById('journey-section');
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  };
 
   const handleStageClick = (stageIndex: number) => {
     audioSystem.playClickBeep();
@@ -159,12 +144,6 @@ export default function App() {
     return cleanup;
   }, []);
 
-  const activeHighlight = (() => {
-    if (selectedCategory !== 'All') return selectedCategory;
-    if (scrollProgress >= 0.14 && scrollProgress <= 0.31) return 'IoT';
-    if (scrollProgress > 0.31 && scrollProgress <= 0.48) return 'Full-Stack';
-    return 'All';
-  })();
 
   // Measure page scroll overall
   useEffect(() => {
@@ -207,9 +186,37 @@ export default function App() {
     };
   }, []);
 
+  // Intercept scroll wheel events inside the projects grid to allow faster internal scroll without page scrolljacking
+  useEffect(() => {
+    const grid = projectsGridRef.current;
+    if (!grid) return;
+
+    const handleGridWheel = (e: WheelEvent) => {
+      const isScrollable = grid.scrollHeight > grid.clientHeight;
+      if (!isScrollable) return;
+
+      const atTop = grid.scrollTop === 0;
+      const atBottom = Math.ceil(grid.scrollTop + grid.clientHeight) >= grid.scrollHeight;
+
+      // Scroll 1.8x faster
+      const scrollSpeed = 1.8;
+
+      if ((e.deltaY > 0 && !atBottom) || (e.deltaY < 0 && !atTop)) {
+        e.preventDefault();
+        grid.scrollTop += e.deltaY * scrollSpeed;
+      }
+    };
+
+    grid.addEventListener('wheel', handleGridWheel, { passive: false });
+    return () => {
+      grid.removeEventListener('wheel', handleGridWheel);
+    };
+  }, [projects]);
+
   // Section Refs for scroll tracking
   const heroSectionRef = useRef<HTMLDivElement>(null);
   const projectsSectionRef = useRef<HTMLDivElement>(null);
+  const projectsGridRef = useRef<HTMLDivElement>(null);
   const impactSectionRef = useRef<HTMLDivElement>(null);
   const academicsSectionRef = useRef<HTMLDivElement>(null);
   const credentialsSectionRef = useRef<HTMLDivElement>(null);
@@ -443,7 +450,7 @@ export default function App() {
           </div>
 
           {/* STAGE 2: TRAVELING THROUGH PROJECTS */}
-          <div ref={projectsSectionRef} id="journey-section" className="relative h-[250vh] w-full">
+          <div ref={projectsSectionRef} id="journey-section" className="relative h-[180vh] w-full">
             <div className="sticky top-0 h-screen w-full flex items-center justify-center px-6 overflow-hidden">
               
               {/* Floating Section Title - Background text */}
@@ -455,46 +462,27 @@ export default function App() {
                   Architectural Archives
                 </h2>
               </div>
-
-              {/* Category Filter Buttons */}
-              <div className="absolute top-44 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 px-1.5 py-1 rounded-full bg-cyber-gray/60 border border-white/5 backdrop-blur-md">
-                {(['All', 'IoT', 'Full-Stack'] as const).map((cat) => (
-                  <button
-                    key={cat}
-                    onClick={() => selectAndScroll(cat)}
-                    className={`px-4 py-1.5 rounded-full text-[10px] font-mono tracking-widest uppercase transition-all duration-300 cursor-pointer ${
-                      activeHighlight === cat
-                        ? 'bg-brand-blue/25 text-brand-blue border border-brand-blue/30'
-                        : 'text-gray-400 hover:text-white border border-transparent'
-                    }`}
-                  >
-                    {cat}
-                  </button>
-                ))}
-              </div>
-
               {/* Bento-style Project Grid Container */}
               <motion.div
+                ref={projectsGridRef}
                 style={{ 
                   opacity: gridOpacity, 
                   scale: gridScale, 
                   y: gridTranslateY,
                   pointerEvents: gridPointerEvents
                 }}
-                className="w-full max-w-6xl relative z-10 px-4"
+                className="w-full max-w-6xl relative z-10 px-4 max-h-[72vh] overflow-y-auto no-scrollbar py-4 mt-20"
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {projects
-                    .filter((project) => selectedCategory === 'All' || getProjectCategory(project) === selectedCategory)
-                    .map((project, idx) => (
-                      <ProjectCard 
-                        key={project.id}
-                        project={project} 
-                        colorTheme={idx % 2 === 0 ? "emerald" : "blue"} 
-                        isAdmin={isAdmin} 
-                        onUpdate={handleUpdateProject} 
-                      />
-                    ))}
+                  {projects.map((project, idx) => (
+                    <ProjectCard 
+                      key={project.id}
+                      project={project} 
+                      colorTheme={idx % 2 === 0 ? "emerald" : "blue"} 
+                      isAdmin={isAdmin} 
+                      onUpdate={handleUpdateProject} 
+                    />
+                  ))}
                 </div>
               </motion.div>
 
@@ -774,7 +762,7 @@ export default function App() {
                     Instagram
                   </a>
                   <a
-                    href="https://github.com/anandhu-krishnan"
+                    href="https://github.com/Anandhu0724"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => audioSystem.playClickBeep()}
@@ -856,38 +844,16 @@ export default function App() {
               <h2 className="text-3xl font-display font-bold text-white mt-1">Projects</h2>
             </div>
 
-            {/* Category Filter Buttons */}
-            <div className="flex justify-center gap-2 px-1.5 py-1 rounded-full bg-cyber-gray/40 border border-white/5 w-fit mx-auto">
-              {(['All', 'IoT', 'Full-Stack'] as const).map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => {
-                    audioSystem.playClickBeep();
-                    setSelectedCategory(cat);
-                  }}
-                  className={`px-4 py-1.5 rounded-full text-[10px] font-mono tracking-widest uppercase transition-all duration-300 cursor-pointer ${
-                    selectedCategory === cat
-                      ? 'bg-brand-blue/25 text-brand-blue border border-brand-blue/30'
-                      : 'text-gray-400 hover:text-white border border-transparent'
-                  }`}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
-
             <div className="space-y-8">
-              {projects
-                .filter((project) => selectedCategory === 'All' || getProjectCategory(project) === selectedCategory)
-                .map((project, idx) => (
-                  <ProjectCard 
-                    key={project.id}
-                    project={project} 
-                    colorTheme={idx % 2 === 0 ? "emerald" : "blue"} 
-                    isAdmin={isAdmin} 
-                    onUpdate={handleUpdateProject} 
-                  />
-                ))}
+              {projects.map((project, idx) => (
+                <ProjectCard 
+                  key={project.id}
+                  project={project} 
+                  colorTheme={idx % 2 === 0 ? "emerald" : "blue"} 
+                  isAdmin={isAdmin} 
+                  onUpdate={handleUpdateProject} 
+                />
+              ))}
             </div>
           </section>
 
@@ -1038,7 +1004,7 @@ export default function App() {
                   Instagram
                 </a>
                 <a
-                  href="https://github.com/anandhu-krishnan"
+                  href="https://github.com/Anandhu0724"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => audioSystem.playClickBeep()}
